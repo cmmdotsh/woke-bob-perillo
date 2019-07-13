@@ -30,9 +30,22 @@ function robGet(location) {
 async function robProcess() {
   let laffy = "30.2241,-92.0198";
   let bobbyKnows = await robGet(laffy);
+  let maisRiteNow = {
+    putOnKATC: bobbyKnows.currently,
+    putOnPBS: bobbyKnows.alerts
+  };
   fs.writeFile(
-    "bobbyKnowledge.JSON",
-    JSON.stringify(bobbyKnows, null, 2),
+    "bobbyKnow.JSON",
+    JSON.stringify(maisRiteNow.putOnKATC, null, 2),
+    err => {
+      if (err) {
+        console.log("could not write bobby's knows, cher");
+      }
+    }
+  );
+  fs.writeFile(
+    "bobbySee.JSON",
+    JSON.stringify(maisRiteNow.putOnPBS, null, 2),
     err => {
       if (err) {
         console.log("could not write bobby's knows, cher");
