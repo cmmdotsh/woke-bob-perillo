@@ -3,7 +3,7 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const bobBrain = require("./bobBrain.json");
-const darkSkyAPIkey = "fdfa7b9cb1fe58e6c4b6a5d65cc752c8/";
+const darkSkyAPIkey = require("./bobCIA.json");
 const forecast = "https://api.darksky.net/forecast/";
 
 function robGet(location) {
@@ -119,6 +119,7 @@ client.on("message", async message => {
           .setAuthor(post.severity)
           .addField("expires", new Date(post.expires).toLocaleTimeString())
           .setDescription(post.description);
+        console.log("");
         await message.channel.send(embed);
       });
     } catch (error) {
